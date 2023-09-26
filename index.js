@@ -1,4 +1,5 @@
 /***Global Variable */
+let gamesList;
 
 /***Fetch Requests */
 let options = {
@@ -8,7 +9,9 @@ let options = {
 function getGames(){
     fetch('https://free-to-play-games-database.p.rapidapi.com/api/games', options)
     .then(res => res.json())
-    .then(games => console.log('games', games))
+    .then(games => {
+        gamesList = games
+    })
 }
 
 //initialize
