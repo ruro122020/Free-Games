@@ -1,3 +1,5 @@
+# Free Games Application
+
 This is a simple application that provides a place to find free games to play!
 
 The application provides a list of free games to play and some basic information about each game and a link to play the game. It has a few features. 
