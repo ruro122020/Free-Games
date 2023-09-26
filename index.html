@@ -4,11 +4,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="index.js"></script>
+    <link rel="stylesheet" href="styles.css" />
     <title>Document</title>
 </head>
 
 <body>
-
+    <h1>Free Games</h1>
+    <select id="game-filter">
+        <option>All</option>
+        <option>PC</option>
+        <option>Browser</option>
+    </select>
+    <input id="search" type="text" placeholder="Search..."/>
+    <div>
+        <h3>Click on a Title for more Information</h3>
+        <ul id="game-list"></ul>
+        <button id="back"><=</button>
+        <button id="forward">=></button>
+    </div>
+    <div id="game-info"></div>
 </body>
 
 </html>
