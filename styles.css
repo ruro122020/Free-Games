@@ -1,3 +1,6 @@
 .highlighter {
     color: blue;
 }
+li{
+    cursor: pointer;
+}
