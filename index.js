@@ -1,11 +1,18 @@
 /***Global Variable */
 let gamesList;
+let counter = 0;
 /***Helper functions */
-function filterGamesForTitle(){
-    return gamesList.map(game => game.title)
-}
-/***Render to DOM */
 
+/***Render to DOM */
+function renderGameTitles (){
+    const nextGames = gamesList.map(game => game.title)
+    nextGames.forEach(gameTitle => {
+        let titlesContainer = document.getElementById('game-list')
+        const titleElement = document.createElement('li')
+        titleElement.textContent = gameTitle
+        titlesContainer.appendChild(titleElement)
+    }) 
+}   
 /***Fetch Requests */
 let options = {
     method: 'GET',
@@ -16,7 +23,7 @@ function getGames(){
     .then(res => res.json())
     .then(games => {
         gamesList = games
-
+        renderGameTitles()
     })
 }
 
