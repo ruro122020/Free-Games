@@ -13,9 +13,23 @@ function titlesArr(games) {
     gamesList = games
     return games.map(game => game.title)
 }
+function searchResults(value) {
+    const newArr = gameTitles.filter(title => {
+        const newTitle = title.toLowerCase()
+        return newTitle.includes(value.toLowerCase())
+    })
+    return newArr
+}
+function clearClass(element){
+    const parentElement = element.parentNode
+    const children = parentElement.children
+    Array.from(children).forEach(element => element.className = '')
+}
 /***Events */
 function titleEvent(titleElement) {
     titleElement.addEventListener('click', () => {
+        clearClass(titleElement)
+        titleElement.setAttribute('class', 'highlighter')
         handleTitleEvent(titleElement)
     })
 }
@@ -31,7 +45,7 @@ function handleTitleEvent(titleElement) {
 }
 function handleNextGames() {
     const nextGames = gameTitles.slice(counter, counter + 10)
-    if(nextGames.length === 0){
+    if (!nextGames.length) {
         alert(`You're at the end of the game list`)
         return
     }
@@ -40,7 +54,7 @@ function handleNextGames() {
     counter += 10
 }
 function handlePreviousGames() {
-    if(counter === 10){
+    if (counter === 10) {
         alert(`You're at the start of the game list`)
         return
     }
@@ -53,17 +67,12 @@ function handlePlatformGames(e) {
     getGamesByPlatform(e.target.value.toLowerCase())
 }
 function handleSearch(e) {
+    counter = 0
     if (e.target.value === '') {
-        counter = 0
         gameTitles = titlesArr(gamesList)
         handleNextGames()
     } else {
-        const newArr = gameTitles.filter(title => {
-            const newTitle = title.toLowerCase()
-            return newTitle.includes(e.target.value.toLowerCase())
-        })
-        gameTitles = newArr
-        counter = 0
+        gameTitles = searchResults(e.target.value)
         handleNextGames()
     }
 }
@@ -116,7 +125,7 @@ function getGamesByPlatform(platform) {
     fetch(`https://free-to-play-games-database.p.rapidapi.com/api/games?platform=${platform}`, options)
         .then(res => res.json())
         .then(games => {
-            gamesList = games
+            gameTitles = titlesArr(games)
             counter = 0
             handleNextGames(games)
         })
