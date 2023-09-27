@@ -14,6 +14,7 @@ function titleEvent(titleElement) {
         handleTitleEvent(titleElement)
     })
 }
+
 /***Handle Events Functions */
 function handleTitleEvent(titleElement) {
     const gameObj = gamesList.find(game => game.title === titleElement.textContent)
@@ -21,7 +22,8 @@ function handleTitleEvent(titleElement) {
 }
 /***Render to DOM */
 function renderGameTitles() {
-    const nextGames = gamesList.map(game => game.title)
+    const gameTitles = gamesList.map(game => game.title)
+    const nextGames = gameTitles.slice(counter, counter + 10)
     nextGames.forEach(gameTitle => {
         let titlesContainer = document.getElementById('game-list')
         const titleElement = document.createElement('li')
@@ -29,6 +31,7 @@ function renderGameTitles() {
         titlesContainer.appendChild(titleElement)
         titleEvent(titleElement)
     })
+    counter += 10
 }
 function renderGameInfo({ title, release_date, platform, genre, thumbnail, game_url }) {
     const gameInfoContainer = document.getElementById('game-info')
