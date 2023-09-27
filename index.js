@@ -1,5 +1,6 @@
 /***Global Variable */
 let gamesList;
+let gameTitles;
 let counter = 0;
 /***Helper functions */
 function clearDOM(parentElement) {
@@ -8,8 +9,9 @@ function clearDOM(parentElement) {
         Array.from(childElements).forEach(element => element.remove())
     }
 }
-function titlesArr(){
-    return gamesList.map(game => game.title)
+function titlesArr(games) {
+    gamesList = games
+    return games.map(game => game.title)
 }
 /***Events */
 function titleEvent(titleElement) {
@@ -28,29 +30,34 @@ function handleTitleEvent(titleElement) {
     renderGameInfo(gameObj)
 }
 function handleNextGames() {
-    const gameTitle = titlesArr()
-    const nextGames = gameTitle.slice(counter, counter + 10)
+    const nextGames = gameTitles.slice(counter, counter + 10)
     clearDOM(document.getElementById('game-list'))
     nextGames.forEach(title => renderGameTitles(title))
-    counter +=10
+    counter += 10
 }
-function handlePreviousGames(){
-    const gameTitle = titlesArr()
-    const previousGames = gameTitle.slice(counter - 20, counter - 10)
+function handlePreviousGames() {
+    const previousGames = gameTitles.slice(counter - 20, counter - 10)
     clearDOM(document.getElementById('game-list'))
     previousGames.forEach(game => renderGameTitles(game))
     counter -= 10
 }
-function handlePlatformGames(e){
+function handlePlatformGames(e) {
     getGamesByPlatform(e.target.value.toLowerCase())
 }
-function handleSearch(e){
-    const array = titlesArr()
-    const newArr = array.filter(title => {
-        const newTitle = title.toLowerCase()
-        return newTitle.includes(e.target.value.toLowerCase())
-    })
-    console.log('newArr', newArr)
+function handleSearch(e) {
+    if (e.target.value === '') {
+        counter = 0
+        gameTitles = titlesArr(gamesList)
+        handleNextGames()
+    } else {
+        const newArr = gameTitles.filter(title => {
+            const newTitle = title.toLowerCase()
+            return newTitle.includes(e.target.value.toLowerCase())
+        })
+        gameTitles = newArr
+        counter = 0
+        handleNextGames()
+    }
 }
 
 /***Render to DOM */
@@ -91,21 +98,21 @@ function getGames() {
     fetch('https://free-to-play-games-database.p.rapidapi.com/api/games', options)
         .then(res => res.json())
         .then(games => {
-            gamesList = games
+            gameTitles = titlesArr(games)
             handleNextGames()
         })
         .catch(error => console.log('error', error))
 }
 
-function getGamesByPlatform(platform){
+function getGamesByPlatform(platform) {
     fetch(`https://free-to-play-games-database.p.rapidapi.com/api/games?platform=${platform}`, options)
-    .then(res => res.json())
-    .then(games => {
-        gamesList = games
-        counter = 0
-        handleNextGames(games)
-    })
-    .catch(error => console.log('error', error))
+        .then(res => res.json())
+        .then(games => {
+            gamesList = games
+            counter = 0
+            handleNextGames(games)
+        })
+        .catch(error => console.log('error', error))
 }
 
 //initialize
