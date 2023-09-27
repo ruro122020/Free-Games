@@ -8,6 +8,9 @@ function clearDOM(parentElement) {
         Array.from(childElements).forEach(element => element.remove())
     }
 }
+function titlesArr(){
+    return gamesList.map(game => game.title)
+}
 /***Events */
 function titleEvent(titleElement) {
     titleElement.addEventListener('click', () => {
@@ -17,27 +20,37 @@ function titleEvent(titleElement) {
 document.getElementById('forward').addEventListener('click', handleNextGames)
 document.getElementById('back').addEventListener('click', handlePreviousGames)
 document.getElementById('game-filter').addEventListener('change', handlePlatformGames)
+document.getElementById('search').addEventListener('input', handleSearch)
+
 /***Handle Events Functions */
 function handleTitleEvent(titleElement) {
     const gameObj = gamesList.find(game => game.title === titleElement.textContent)
     renderGameInfo(gameObj)
 }
 function handleNextGames() {
-    const gameTitle = gamesList.map(game => game.title)
+    const gameTitle = titlesArr()
     const nextGames = gameTitle.slice(counter, counter + 10)
     clearDOM(document.getElementById('game-list'))
     nextGames.forEach(title => renderGameTitles(title))
     counter +=10
 }
 function handlePreviousGames(){
-    const gameTitle = gamesList.map(game => game.title)
-    const nextGames = gameTitle.slice(counter - 20, counter - 10)
+    const gameTitle = titlesArr()
+    const previousGames = gameTitle.slice(counter - 20, counter - 10)
     clearDOM(document.getElementById('game-list'))
-    nextGames.forEach(game => renderGameTitles(game))
+    previousGames.forEach(game => renderGameTitles(game))
     counter -= 10
 }
 function handlePlatformGames(e){
     getGamesByPlatform(e.target.value.toLowerCase())
+}
+function handleSearch(e){
+    const array = titlesArr()
+    const newArr = array.filter(title => {
+        const newTitle = title.toLowerCase()
+        return newTitle.includes(e.target.value.toLowerCase())
+    })
+    console.log('newArr', newArr)
 }
 
 /***Render to DOM */
