@@ -14,24 +14,26 @@ function titleEvent(titleElement) {
         handleTitleEvent(titleElement)
     })
 }
-
+document.getElementById('forward').addEventListener('click', handleNextGames)
 /***Handle Events Functions */
 function handleTitleEvent(titleElement) {
     const gameObj = gamesList.find(game => game.title === titleElement.textContent)
     renderGameInfo(gameObj)
 }
+function handleNextGames() {
+    const gameTitle = gamesList.map(game => game.title)
+    const nextGames = gameTitle.slice(counter, counter + 10)
+    clearDOM(document.getElementById('game-list'))
+    nextGames.forEach(title => renderGameTitles(title))
+    counter +=10
+}
 /***Render to DOM */
-function renderGameTitles() {
-    const gameTitles = gamesList.map(game => game.title)
-    const nextGames = gameTitles.slice(counter, counter + 10)
-    nextGames.forEach(gameTitle => {
-        let titlesContainer = document.getElementById('game-list')
-        const titleElement = document.createElement('li')
-        titleElement.textContent = gameTitle
-        titlesContainer.appendChild(titleElement)
-        titleEvent(titleElement)
-    })
-    counter += 10
+function renderGameTitles(title) {
+    let titlesContainer = document.getElementById('game-list')
+    const titleElement = document.createElement('li')
+    titleElement.textContent = title
+    titlesContainer.appendChild(titleElement)
+    titleEvent(titleElement)
 }
 function renderGameInfo({ title, release_date, platform, genre, thumbnail, game_url }) {
     const gameInfoContainer = document.getElementById('game-info')
@@ -64,7 +66,7 @@ function getGames() {
         .then(res => res.json())
         .then(games => {
             gamesList = games
-            renderGameTitles()
+            handleNextGames()
         })
 }
 
