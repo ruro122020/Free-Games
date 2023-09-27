@@ -15,6 +15,8 @@ function titleEvent(titleElement) {
     })
 }
 document.getElementById('forward').addEventListener('click', handleNextGames)
+document.getElementById('back').addEventListener('click', handlePreviousGames)
+
 /***Handle Events Functions */
 function handleTitleEvent(titleElement) {
     const gameObj = gamesList.find(game => game.title === titleElement.textContent)
@@ -26,6 +28,13 @@ function handleNextGames() {
     clearDOM(document.getElementById('game-list'))
     nextGames.forEach(title => renderGameTitles(title))
     counter +=10
+}
+function handlePreviousGames(){
+    const gameTitle = gamesList.map(game => game.title)
+    const nextGames = gameTitle.slice(counter - 20, counter - 10)
+    clearDOM(document.getElementById('game-list'))
+    nextGames.forEach(game => renderGameTitles(game))
+    counter -= 10
 }
 /***Render to DOM */
 function renderGameTitles(title) {
