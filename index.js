@@ -81,6 +81,7 @@ function getGames() {
             gamesList = games
             handleNextGames()
         })
+        .catch(error => console.log('error', error))
 }
 
 function getGamesByPlatform(platform){
@@ -91,6 +92,7 @@ function getGamesByPlatform(platform){
         counter = 0
         handleNextGames(games)
     })
+    .catch(error => console.log('error', error))
 }
 
 //initialize
