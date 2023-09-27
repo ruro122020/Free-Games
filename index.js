@@ -44,14 +44,17 @@ function handleTitleEvent(titleElement) {
     renderGameInfo(gameObj)
 }
 function handleNextGames() {
+    const gameListContainer = document.getElementById('game-list')
     const nextGames = gameTitles.slice(counter, counter + 10)
     if (!nextGames.length) {
         alert(`You're at the end of the game list`)
         return
     }
-    clearDOM(document.getElementById('game-list'))
+    clearDOM(gameListContainer)
     nextGames.forEach(title => renderGameTitles(title))
     counter += 10
+    //on page load render the information of the first game on the list
+    handleTitleEvent(gameListContainer.firstElementChild)
 }
 function handlePreviousGames() {
     if (counter === 10) {
