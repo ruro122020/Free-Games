@@ -16,7 +16,6 @@ function titleEvent(titleElement) {
 }
 document.getElementById('forward').addEventListener('click', handleNextGames)
 document.getElementById('back').addEventListener('click', handlePreviousGames)
-
 /***Handle Events Functions */
 function handleTitleEvent(titleElement) {
     const gameObj = gamesList.find(game => game.title === titleElement.textContent)
@@ -36,6 +35,7 @@ function handlePreviousGames(){
     nextGames.forEach(game => renderGameTitles(game))
     counter -= 10
 }
+
 /***Render to DOM */
 function renderGameTitles(title) {
     let titlesContainer = document.getElementById('game-list')
@@ -79,8 +79,20 @@ function getGames() {
         })
 }
 
+function getPlatformGames(platform){
+    fetch(`https://free-to-play-games-database.p.rapidapi.com/api/games?platform=${platform}`, options)
+    .then(res => res.json())
+    .then(games => {
+        console.log('games', games)
+        gamesList = games
+        counter = 0
+        handleNextGames(games)
+    })
+}
+
 //initialize
 function init() {
     getGames()
+    getPlatformGames('browser')
 }
 init()
