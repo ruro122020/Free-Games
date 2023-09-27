@@ -31,11 +31,19 @@ function handleTitleEvent(titleElement) {
 }
 function handleNextGames() {
     const nextGames = gameTitles.slice(counter, counter + 10)
+    if(nextGames.length === 0){
+        alert(`You're at the end of the game list`)
+        return
+    }
     clearDOM(document.getElementById('game-list'))
     nextGames.forEach(title => renderGameTitles(title))
     counter += 10
 }
 function handlePreviousGames() {
+    if(counter === 10){
+        alert(`You're at the start of the game list`)
+        return
+    }
     const previousGames = gameTitles.slice(counter - 20, counter - 10)
     clearDOM(document.getElementById('game-list'))
     previousGames.forEach(game => renderGameTitles(game))
