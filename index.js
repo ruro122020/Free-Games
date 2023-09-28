@@ -172,6 +172,7 @@ function renderFavoriteGame({id, title, gameUrl}){
     addNavButtons()
 }
 function renderFavoriteGames(favoriteGames){
+    /** if game is already in favorites dont add and alert game is already in favorites */
     favoriteGames.forEach((game) => renderFavoriteGame(game))
 }
 /***Fetch Requests */

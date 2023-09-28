@@ -5,6 +5,18 @@
       "title": "Overwatch 2",
       "gameUrl": "https://www.freetogame.com/open/overwatch-2",
       "id": 1
+    },
+    {
+      "cardId": 475,
+      "title": "Genshin Impact",
+      "gameUrl": "https://www.freetogame.com/open/genshin-impact",
+      "id": 2
+    },
+    {
+      "cardId": 517,
+      "title": "Lost Ark",
+      "gameUrl": "https://www.freetogame.com/open/lost-ark",
+      "id": 3
     }
   ]
 }

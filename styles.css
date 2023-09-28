@@ -44,3 +44,7 @@ li{
 .hide{
     visibility: hidden;
 }
+#fav-btn{
+    display: flex;
+    justify-content: flex-end;
+}
