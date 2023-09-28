@@ -161,6 +161,9 @@ function renderFavoriteGame({id, title, gameUrl}){
     deletGameId = id
     deleteBtnEvent(deleteBtn)
 }
+function renderFavoriteGames(favoriteGames){
+    favoriteGames.forEach((game) => renderFavoriteGame(game))
+}
 /***Fetch Requests */
 let options = {
     method: 'GET',
@@ -203,7 +206,7 @@ function postFavorites(gameObj){
 function getFavoritGames(){
     fetch('http://localhost:3000/favorite')
     .then(res => res.json())
-    .then(games => favorites = games)
+    .then(games => renderFavoriteGames(games))
     .catch(error => console.log('error', error))
 }
 
