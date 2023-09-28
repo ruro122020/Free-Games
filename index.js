@@ -34,8 +34,11 @@ function titleEvent(titleElement) {
         handleTitleEvent(titleElement)
     })
 }
-function favoriteEvent(btnElement){
-    btnElement.addEventListener('click', handleFavoriteBtn)
+function favoriteEvent(btn){
+    btn.addEventListener('click', handleFavoriteBtn)
+}
+function deleteBtnEvent(btn){
+    btn.addEventListener('click', handleDeleteBtn)
 }
 document.getElementById('forward').addEventListener('click', handleNextGames)
 document.getElementById('back').addEventListener('click', handlePreviousGames)
@@ -50,6 +53,7 @@ function handleTitleEvent(titleElement) {
 function handleFavoriteBtn(){
     postFavorites(gameCardObj)
 }
+
 function handleNextGames() {
     const gameListContainer = document.getElementById('game-list')
     const nextGames = gameTitles.slice(counter, counter + 10)
@@ -146,8 +150,10 @@ function renderFavoriteGame({id, title, gameUrl}){
     deleteBtn.textContent = ' x '
     link.href = gameUrl
     div.setAttribute('class', 'favorite-card')
+    deleteBtn.setAttribute('class', 'delete')
     div.append(gameTitle, link, deleteBtn)
     favoritesContainer.append(div)
+    deleteBtnEvent(deleteBtn)
 }
 /***Fetch Requests */
 let options = {

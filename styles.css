@@ -32,10 +32,12 @@ li{
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: flex-end;
 }
 #favorites-list a {
     padding-left: 10px;
 }
+
 .arrow-btn {
     font-size: 20px;
 }
