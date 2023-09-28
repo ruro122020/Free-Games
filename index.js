@@ -48,7 +48,7 @@ function handleTitleEvent(titleElement) {
     renderGameInfo(gameObj)
 }
 function handleFavoriteBtn(){
-    
+    postFavorites(gameCardObj)
 }
 function handleNextGames() {
     const gameListContainer = document.getElementById('game-list')
@@ -133,7 +133,7 @@ function renderGameInfo({ id, title, release_date, platform, genre, thumbnail, g
         title: title,
         gameUrl: game_url
     }
-    favoriteEvent(favoriteBtn, gameCardObj)
+    favoriteEvent(favoriteBtn)
 }
 /***Fetch Requests */
 let options = {
