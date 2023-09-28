@@ -2,6 +2,7 @@
 let gamesList;
 let gameTitles;
 let counter = 0;
+let gameCardObj;
 /***Helper functions */
 function clearDOM(parentElement) {
     const childElements = parentElement.children
@@ -33,6 +34,9 @@ function titleEvent(titleElement) {
         handleTitleEvent(titleElement)
     })
 }
+function favoriteEvent(btnElement){
+    btnElement.addEventListener('click', handleFavoriteBtn)
+}
 document.getElementById('forward').addEventListener('click', handleNextGames)
 document.getElementById('back').addEventListener('click', handlePreviousGames)
 document.getElementById('game-filter').addEventListener('change', handlePlatformGames)
@@ -42,6 +46,9 @@ document.getElementById('search').addEventListener('input', handleSearch)
 function handleTitleEvent(titleElement) {
     const gameObj = gamesList.find(game => game.title === titleElement.textContent)
     renderGameInfo(gameObj)
+}
+function handleFavoriteBtn(){
+    
 }
 function handleNextGames() {
     const gameListContainer = document.getElementById('game-list')
@@ -88,7 +95,7 @@ function renderGameTitles(title) {
     titlesContainer.appendChild(titleElement)
     titleEvent(titleElement)
 }
-function renderGameInfo({ title, release_date, platform, genre, thumbnail, game_url, short_description }) {
+function renderGameInfo({ id, title, release_date, platform, genre, thumbnail, game_url, short_description }) {
     const gameInfoContainer = document.getElementById('game-info')
     clearDOM(gameInfoContainer)
     //create elements
@@ -121,6 +128,12 @@ function renderGameInfo({ title, release_date, platform, genre, thumbnail, game_
         gameGenre,
         favoriteBtn
     )
+    gameCardObj = {
+        cardId: id,
+        title: title,
+        gameUrl: game_url
+    }
+    favoriteEvent(favoriteBtn, gameCardObj)
 }
 /***Fetch Requests */
 let options = {
