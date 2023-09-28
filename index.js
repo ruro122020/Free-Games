@@ -27,11 +27,11 @@ function clearClass(element) {
     const children = parentElement.children
     Array.from(children).forEach(element => element.className = '')
 }
-function addNavButtons(){
+function addNavButtons() {
     const favoriteList = document.getElementById('favorites-list')
     const back = document.getElementById('fav-back')
     const forward = document.getElementById('fav-forward')
-    if(favoriteList.children.length){
+    if (favoriteList.children.length) {
         back.classList.remove('hide')
         forward.classList.remove('hide')
     }
@@ -45,10 +45,10 @@ function titleEvent(titleElement) {
         handleTitleEvent(titleElement)
     })
 }
-function favoriteEvent(btn){
+function favoriteEvent(btn) {
     btn.addEventListener('click', handleFavoriteBtn)
 }
-function deleteBtnEvent(btn){
+function deleteBtnEvent(btn) {
     btn.addEventListener('click', handleDeleteBtn)
 }
 document.getElementById('forward').addEventListener('click', handleNextGames)
@@ -61,11 +61,20 @@ function handleTitleEvent(titleElement) {
     const gameObj = gamesList.find(game => game.title === titleElement.textContent)
     renderGameInfo(gameObj)
 }
-function handleFavoriteBtn(){
-    postFavorites(gameCardObj)
+function handleFavoriteBtn() {
+    /** if game is already in favorites dont add and alert game is already in favorites */
+    const favoriteList = document.querySelectorAll(".favorite-card")
+    const titleArr = Array.from(favoriteList).map(element => element.children[0].textContent)
+    const game = titleArr.find(game => gameCardObj.title === game)
+    if (game) {
+        alert(`${game} is already in favorites`)
+    } else {
+        postFavorites(gameCardObj)
+    }
+
 }
-function handleDeleteBtn(){
-    console.log('gamecardobj', )
+function handleDeleteBtn() {
+    console.log('gamecardobj',)
 }
 function handleNextGames() {
     const gameListContainer = document.getElementById('game-list')
@@ -152,7 +161,7 @@ function renderGameInfo({ id, title, release_date, platform, genre, thumbnail, g
     }
     favoriteEvent(favoriteBtn)
 }
-function renderFavoriteGame({id, title, gameUrl}){
+function renderFavoriteGame({ id, title, gameUrl }) {
     const favoritesContainer = document.getElementById('favorites-list')
     const gameTitle = document.createElement('h3')
     const link = document.createElement('a')
@@ -171,8 +180,7 @@ function renderFavoriteGame({id, title, gameUrl}){
     deleteBtnEvent(deleteBtn)
     addNavButtons()
 }
-function renderFavoriteGames(favoriteGames){
-    /** if game is already in favorites dont add and alert game is already in favorites */
+function renderFavoriteGames(favoriteGames) {
     favoriteGames.forEach((game) => renderFavoriteGame(game))
 }
 /***Fetch Requests */
@@ -201,8 +209,8 @@ function getGamesByPlatform(platform) {
         })
         .catch(error => console.log('error', error))
 }
-function postFavorites(gameObj){
-    fetch('http://localhost:3000/favorite',{
+function postFavorites(gameObj) {
+    fetch('http://localhost:3000/favorite', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -210,15 +218,15 @@ function postFavorites(gameObj){
         },
         body: JSON.stringify(gameObj)
     })
-    .then(res => res.json())
-    .then(game => renderFavoriteGame(game))
-    .catch(error => console.log('error',error))
+        .then(res => res.json())
+        .then(game => renderFavoriteGame(game))
+        .catch(error => console.log('error', error))
 }
-function getFavoritGames(){
+function getFavoritGames() {
     fetch('http://localhost:3000/favorite')
-    .then(res => res.json())
-    .then(games => renderFavoriteGames(games))
-    .catch(error => console.log('error', error))
+        .then(res => res.json())
+        .then(games => renderFavoriteGames(games))
+        .catch(error => console.log('error', error))
 }
 
 //initialize
