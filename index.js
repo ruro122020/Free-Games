@@ -20,7 +20,7 @@ function searchResults(value) {
     })
     return newArr
 }
-function clearClass(element){
+function clearClass(element) {
     const parentElement = element.parentNode
     const children = parentElement.children
     Array.from(children).forEach(element => element.className = '')
@@ -88,7 +88,7 @@ function renderGameTitles(title) {
     titlesContainer.appendChild(titleElement)
     titleEvent(titleElement)
 }
-function renderGameInfo({ title, release_date, platform, genre, thumbnail, game_url, short_description}) {
+function renderGameInfo({ title, release_date, platform, genre, thumbnail, game_url, short_description }) {
     const gameInfoContainer = document.getElementById('game-info')
     clearDOM(gameInfoContainer)
     //create elements
@@ -99,6 +99,7 @@ function renderGameInfo({ title, release_date, platform, genre, thumbnail, game_
     const gamePlatform = document.createElement('p')
     const gameGenre = document.createElement('p')
     const description = document.createElement('p')
+    const favoriteBtn = document.createElement('button')
     //add text to elements
     gameTitle.textContent = title
     link.textContent = 'Play Game'
@@ -106,10 +107,20 @@ function renderGameInfo({ title, release_date, platform, genre, thumbnail, game_
     gamePlatform.textContent = `Platform: ${platform}`
     gameGenre.textContent = `Genre: ${genre}`
     description.textContent = `Description: ${short_description}`
+    favoriteBtn.textContent = 'Favorite'
     //set attributes
     img.src = thumbnail
     link.href = game_url
-    gameInfoContainer.append(img, gameTitle, link, description, dateReleased, gamePlatform, gameGenre)
+    gameInfoContainer.append(
+        img,
+        gameTitle,
+        link,
+        description,
+        dateReleased,
+        gamePlatform,
+        gameGenre,
+        favoriteBtn
+    )
 }
 /***Fetch Requests */
 let options = {
