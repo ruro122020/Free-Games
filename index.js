@@ -186,12 +186,13 @@ function postFavorites(gameObj){
 function getFavoritGames(){
     fetch('http://localhost:3000/favorite')
     .then(res => res.json())
-    .then(games => console.log(games))
+    .then(games => games.forEach(game => renderFavoriteGame(game)))
     .catch(error => console.log('error', error))
 }
 
 //initialize
 function init() {
     getGames()
+    getFavoritGames()
 }
 init()

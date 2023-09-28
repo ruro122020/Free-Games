@@ -5,6 +5,12 @@
       "title": "Overwatch 2",
       "gameUrl": "https://www.freetogame.com/open/overwatch-2",
       "id": 1
+    },
+    {
+      "cardId": 427,
+      "title": "Drakensang Online",
+      "gameUrl": "https://www.freetogame.com/open/drakensang-online",
+      "id": 2
     }
   ]
 }
