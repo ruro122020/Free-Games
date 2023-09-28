@@ -1,6 +1,30 @@
+body{
+    display: flex;
+    flex-direction: column;
+}
+#bar-container{
+    
+ }
+ #game-container{
+     display: flex;
+     flex-direction: row;
+     justify-content: flex-start;
+ }
+ #game-info{
+    padding-left: 30px;
+ }
 .highlighter {
     color: blue;
 }
+ul{
+    list-style-type: none;
+    padding: 0;
+    padding-left: 5px;
+}
 li{
     cursor: pointer;
+    
+}
+#button-container{
+
 }

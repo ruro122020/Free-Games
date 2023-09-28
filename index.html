@@ -12,18 +12,22 @@
 
 <body>
     <h1>Free Games</h1>
-    <select id="game-filter">
-        <option>All</option>
-        <option>PC</option>
-        <option>Browser</option>
-    </select>
-    <input id="search" type="text" placeholder="Search..." />
+    <div id="bar-container">
+        <input id="search" type="text" placeholder="Search..." />
+        <select id="game-filter">
+            <option>All</option>
+            <option>PC</option>
+            <option>Browser</option>
+        </select>
+    </div>
     <div id="game-container">
         <div>
             <h3>Click on a Title for more Information</h3>
             <ul id="game-list"></ul>
-            <button id="back"><=</button>
-            <button id="forward">=></button>
+            <div id="button-container">
+                <button id="back"> <= </button>
+                <button id="forward"> => </button>
+            </div>
         </div>
         <div id="game-info"></div>
     </div>

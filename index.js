@@ -88,7 +88,7 @@ function renderGameTitles(title) {
     titlesContainer.appendChild(titleElement)
     titleEvent(titleElement)
 }
-function renderGameInfo({ title, release_date, platform, genre, thumbnail, game_url }) {
+function renderGameInfo({ title, release_date, platform, genre, thumbnail, game_url, short_description}) {
     const gameInfoContainer = document.getElementById('game-info')
     clearDOM(gameInfoContainer)
     //create elements
@@ -98,16 +98,18 @@ function renderGameInfo({ title, release_date, platform, genre, thumbnail, game_
     const dateReleased = document.createElement('p')
     const gamePlatform = document.createElement('p')
     const gameGenre = document.createElement('p')
+    const description = document.createElement('p')
     //add text to elements
     gameTitle.textContent = title
     link.textContent = 'Play Game'
     dateReleased.textContent = `Date Released: ${release_date}`
     gamePlatform.textContent = `Platform: ${platform}`
     gameGenre.textContent = `Genre: ${genre}`
+    description.textContent = `Description: ${short_description}`
     //set attributes
     img.src = thumbnail
     link.href = game_url
-    gameInfoContainer.append(img, gameTitle, link, dateReleased, gamePlatform, gameGenre)
+    gameInfoContainer.append(img, gameTitle, link, description, dateReleased, gamePlatform, gameGenre)
 }
 /***Fetch Requests */
 let options = {
@@ -131,6 +133,7 @@ function getGamesByPlatform(platform) {
             gameTitles = titlesArr(games)
             counter = 0
             handleNextGames(games)
+            console.log(games)
         })
         .catch(error => console.log('error', error))
 }
