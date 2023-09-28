@@ -3,12 +3,15 @@ body{
     flex-direction: column;
 }
 #bar-container{
-    
- }
+    padding-left: 10px;
+}
  #game-container{
      display: flex;
      flex-direction: row;
      justify-content: flex-start;
+ }
+ .left-bar-container{
+    padding-left: 10px;
  }
  #game-info{
     padding-left: 30px;
@@ -25,6 +28,14 @@ li{
     cursor: pointer;
     
 }
-#button-container{
-
+.favorite-card{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+#favorites-list a {
+    padding-left: 10px;
+}
+.arrow-btn {
+    font-size: 20px;
 }

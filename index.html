@@ -6,8 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script defer src="config.js"></script>
     <script defer src="index.js"></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
     <link rel="stylesheet" href="styles.css" />
-    <title>Document</title>
+    <title>Free Games</title>
 </head>
 
 <body>
@@ -21,17 +22,17 @@
         </select>
     </div>
     <div id="game-container">
-        <div>
+        <div class="left-bar-container">
             <h3>Click on a Title for more Information</h3>
             <ul id="game-list"></ul>
             <div id="button-container">
-                <button id="back"> <= </button>
-                <button id="forward"> => </button>
+                <button id="back" class="arrow-btn"> &#8592;</button>
+                <button id="forward" class="arrow-btn"> &#8594; </button>
             </div>
         </div>
         <div id="game-info"></div>
         <div id="favorites-list">
-            Favorites
+            <h1>Favorites</h1>
         </div>
     </div>
 </body>

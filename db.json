@@ -11,6 +11,36 @@
       "title": "Drakensang Online",
       "gameUrl": "https://www.freetogame.com/open/drakensang-online",
       "id": 2
+    },
+    {
+      "cardId": 475,
+      "title": "Genshin Impact",
+      "gameUrl": "https://www.freetogame.com/open/genshin-impact",
+      "id": 3
+    },
+    {
+      "cardId": 427,
+      "title": "Drakensang Online",
+      "gameUrl": "https://www.freetogame.com/open/drakensang-online",
+      "id": 4
+    },
+    {
+      "cardId": 517,
+      "title": "Lost Ark",
+      "gameUrl": "https://www.freetogame.com/open/lost-ark",
+      "id": 5
+    },
+    {
+      "cardId": 523,
+      "title": "Fall Guys",
+      "gameUrl": "https://www.freetogame.com/open/fall-guys",
+      "id": 6
+    },
+    {
+      "cardId": 521,
+      "title": "Diablo Immortal",
+      "gameUrl": "https://www.freetogame.com/open/diablo-immortal",
+      "id": 7
     }
   ]
 }

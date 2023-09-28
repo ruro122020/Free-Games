@@ -139,10 +139,13 @@ function renderFavoriteGame({title, gameUrl}){
     const favoritesContainer = document.getElementById('favorites-list')
     const gameTitle = document.createElement('h3')
     const link = document.createElement('a')
+    const div = document.createElement('div')
     link.textContent = 'Play game'
     gameTitle.textContent = title
     link.href = gameUrl
-    favoritesContainer.append(gameTitle, link)
+    div.setAttribute('class', 'favorite-card')
+    div.append(gameTitle, link)
+    favoritesContainer.append(div)
 }
 /***Fetch Requests */
 let options = {
