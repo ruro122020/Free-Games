@@ -161,6 +161,19 @@ function getGamesByPlatform(platform) {
         })
         .catch(error => console.log('error', error))
 }
+function postFavorites(gameObj){
+    fetch('http://localhost:3000/favorite',{
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify(gameObj)
+    })
+    .then(res => res.json())
+    .then(game => console.log('game', game))
+    .catch(error => console.log('error',error))
+}
 
 //initialize
 function init() {
