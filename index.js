@@ -3,7 +3,7 @@ let gamesList;
 let gameTitles;
 let counter = 0;
 let gameCardObj;
-let favorites;
+
 /***Helper functions */
 function clearDOM(parentElement) {
     const childElements = parentElement.children
@@ -26,6 +26,15 @@ function clearClass(element) {
     const parentElement = element.parentNode
     const children = parentElement.children
     Array.from(children).forEach(element => element.className = '')
+}
+function addNavButtons(){
+    const favoriteList = document.getElementById('favorites-list')
+    const back = document.getElementById('fav-back')
+    const forward = document.getElementById('fav-forward')
+    if(favoriteList.children.length){
+        back.classList.remove('hide')
+        forward.classList.remove('hide')
+    }
 }
 
 /***Events */
@@ -160,6 +169,7 @@ function renderFavoriteGame({id, title, gameUrl}){
     console.log('id', id)
     deletGameId = id
     deleteBtnEvent(deleteBtn)
+    addNavButtons()
 }
 function renderFavoriteGames(favoriteGames){
     favoriteGames.forEach((game) => renderFavoriteGame(game))

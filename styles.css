@@ -41,3 +41,6 @@ li{
 .arrow-btn {
     font-size: 20px;
 }
+.hide{
+    visibility: hidden;
+}
