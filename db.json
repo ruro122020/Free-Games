@@ -41,6 +41,18 @@
       "title": "Diablo Immortal",
       "gameUrl": "https://www.freetogame.com/open/diablo-immortal",
       "id": 7
+    },
+    {
+      "cardId": 540,
+      "title": "Overwatch 2",
+      "gameUrl": "https://www.freetogame.com/open/overwatch-2",
+      "id": 8
+    },
+    {
+      "cardId": 540,
+      "title": "Overwatch 2",
+      "gameUrl": "https://www.freetogame.com/open/overwatch-2",
+      "id": 9
     }
   ]
 }

@@ -34,7 +34,7 @@ li{
     align-items: center;
     justify-content: flex-end;
 }
-#favorites-list a {
+#favorites-list-container a {
     padding-left: 10px;
 }
 

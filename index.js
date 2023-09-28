@@ -3,6 +3,7 @@ let gamesList;
 let gameTitles;
 let counter = 0;
 let gameCardObj;
+let favorites;
 /***Helper functions */
 function clearDOM(parentElement) {
     const childElements = parentElement.children
@@ -26,6 +27,7 @@ function clearClass(element) {
     const children = parentElement.children
     Array.from(children).forEach(element => element.className = '')
 }
+
 /***Events */
 function titleEvent(titleElement) {
     titleElement.addEventListener('click', () => {
@@ -53,7 +55,9 @@ function handleTitleEvent(titleElement) {
 function handleFavoriteBtn(){
     postFavorites(gameCardObj)
 }
-
+function handleDeleteBtn(){
+    console.log('gamecardobj', )
+}
 function handleNextGames() {
     const gameListContainer = document.getElementById('game-list')
     const nextGames = gameTitles.slice(counter, counter + 10)
@@ -153,6 +157,8 @@ function renderFavoriteGame({id, title, gameUrl}){
     deleteBtn.setAttribute('class', 'delete')
     div.append(gameTitle, link, deleteBtn)
     favoritesContainer.append(div)
+    console.log('id', id)
+    deletGameId = id
     deleteBtnEvent(deleteBtn)
 }
 /***Fetch Requests */
@@ -197,7 +203,7 @@ function postFavorites(gameObj){
 function getFavoritGames(){
     fetch('http://localhost:3000/favorite')
     .then(res => res.json())
-    .then(games => games.forEach(game => renderFavoriteGame(game)))
+    .then(games => favorites = games)
     .catch(error => console.log('error', error))
 }
 
