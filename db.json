@@ -1,3 +1,22 @@
 {
-    "favorite":[]
+  "favorite": [
+    {
+      "cardId": 540,
+      "title": "Overwatch 2",
+      "gameUrl": "https://www.freetogame.com/open/overwatch-2",
+      "id": 1
+    },
+    {
+      "cardId": 540,
+      "title": "Overwatch 2",
+      "gameUrl": "https://www.freetogame.com/open/overwatch-2",
+      "id": 2
+    },
+    {
+      "cardId": 540,
+      "title": "Overwatch 2",
+      "gameUrl": "https://www.freetogame.com/open/overwatch-2",
+      "id": 3
+    }
+  ]
 }

@@ -135,6 +135,15 @@ function renderGameInfo({ id, title, release_date, platform, genre, thumbnail, g
     }
     favoriteEvent(favoriteBtn)
 }
+function renderFavoriteGame({title, gameUrl}){
+    const favoritesContainer = document.getElementById('favorites-list')
+    const gameTitle = document.createElement('h3')
+    const link = document.createElement('a')
+    link.textContent = 'Play game'
+    gameTitle.textContent = title
+    link.href = gameUrl
+    favoritesContainer.append(gameTitle, link)
+}
 /***Fetch Requests */
 let options = {
     method: 'GET',
@@ -171,7 +180,7 @@ function postFavorites(gameObj){
         body: JSON.stringify(gameObj)
     })
     .then(res => res.json())
-    .then(game => console.log('game', game))
+    .then(game => renderFavoriteGame(game))
     .catch(error => console.log('error',error))
 }
 
