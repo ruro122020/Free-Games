@@ -36,6 +36,12 @@ function addNavButtons() {
         forward.classList.remove('hide')
     }
 }
+function checkGameExist(gameCardObj){
+    const favoriteList = document.querySelectorAll(".favorite-card")
+    const titleArr = Array.from(favoriteList).map(element => element.children[0].textContent)
+    const game = titleArr.find(game => gameCardObj.title === game)
+    return game
+}
 
 /***Events */
 function titleEvent(titleElement) {
@@ -48,8 +54,10 @@ function titleEvent(titleElement) {
 function favoriteEvent(btn) {
     btn.addEventListener('click', handleFavoriteBtn)
 }
-function deleteBtnEvent(btn) {
-    btn.addEventListener('click', handleDeleteBtn)
+function deleteBtnEvent(btn, id) {
+    btn.addEventListener('click', ()=>{
+        handleDeleteBtn(id)
+    })
 }
 document.getElementById('forward').addEventListener('click', handleNextGames)
 document.getElementById('back').addEventListener('click', handlePreviousGames)
@@ -62,10 +70,7 @@ function handleTitleEvent(titleElement) {
     renderGameInfo(gameObj)
 }
 function handleFavoriteBtn() {
-    /** if game is already in favorites dont add and alert game is already in favorites */
-    const favoriteList = document.querySelectorAll(".favorite-card")
-    const titleArr = Array.from(favoriteList).map(element => element.children[0].textContent)
-    const game = titleArr.find(game => gameCardObj.title === game)
+    const game = checkGameExist(gameCardObj)
     if (game) {
         alert(`${game} is already in favorites`)
     } else {
@@ -73,8 +78,8 @@ function handleFavoriteBtn() {
     }
 
 }
-function handleDeleteBtn() {
-    console.log('gamecardobj',)
+function handleDeleteBtn(id) {
+
 }
 function handleNextGames() {
     const gameListContainer = document.getElementById('game-list')
@@ -175,9 +180,7 @@ function renderFavoriteGame({ id, title, gameUrl }) {
     deleteBtn.setAttribute('class', 'delete')
     div.append(gameTitle, link, deleteBtn)
     favoritesContainer.append(div)
-    console.log('id', id)
-    deletGameId = id
-    deleteBtnEvent(deleteBtn)
+    deleteBtnEvent(deleteBtn, id)
     addNavButtons()
 }
 function renderFavoriteGames(favoriteGames) {
@@ -227,6 +230,19 @@ function getFavoritGames() {
         .then(res => res.json())
         .then(games => renderFavoriteGames(games))
         .catch(error => console.log('error', error))
+}
+function deleteFavoriteGame(id){
+    fetch(`http://localhost:3000/favorite/${id}`,{
+        method: 'DELETE',
+        headers:{
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+            id: id
+        })
+    })
+    .catch(error=>console.log('error', error))
 }
 
 //initialize
