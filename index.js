@@ -29,13 +29,15 @@ function clearClass(element) {
     const children = parentElement.children
     Array.from(children).forEach(element => element.className = '')
 }
-function addNavButtons() {
-    const favoriteList = document.getElementById('favorites-list')
+function addOrRemoveNavButtons() {
     const back = document.getElementById('fav-back')
     const forward = document.getElementById('fav-forward')
-    if (favoriteList.children.length) {
+    if (favorites.length) {
         back.classList.remove('hide')
         forward.classList.remove('hide')
+    }else{
+        back.className = 'hide'
+        forward.className = 'hide'
     }
 }
 function checkGameExist(gameCardObj){
@@ -90,6 +92,9 @@ function handleDeleteBtn(id) {
             favorites = favorites.filter(game => game.id !== id)
         }
     })
+    if(!favorites.length){
+        addOrRemoveNavButtons()
+    }
     //delete from server
     deleteFavoriteGame(id)
 }
@@ -197,7 +202,7 @@ function renderFavoriteGame({ id, title, gameUrl }) {
     div.append(gameTitle, link, deleteBtn)
     favoritesContainer.append(div)
     deleteBtnEvent(deleteBtn, id)
-    addNavButtons()
+    addOrRemoveNavButtons()
 }
 function renderFavoriteGames() {
     favorites.forEach((game) => renderFavoriteGame(game))
@@ -251,7 +256,6 @@ function postFavorites(gameObj) {
         .then(res => res.json())
         .then(game => {
             favorites.push(game)
-            console.log('favorites in postfavorites', favorites)
             renderFavoriteGame(game)
         })
         .catch(error => console.log('error', error))
