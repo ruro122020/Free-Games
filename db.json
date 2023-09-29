@@ -1,22 +1,10 @@
 {
   "favorite": [
     {
-      "cardId": 540,
-      "title": "Overwatch 2",
-      "gameUrl": "https://www.freetogame.com/open/overwatch-2",
-      "id": 1
-    },
-    {
-      "cardId": 427,
-      "title": "Drakensang Online",
-      "gameUrl": "https://www.freetogame.com/open/drakensang-online",
-      "id": 2
-    },
-    {
-      "cardId": 475,
-      "title": "Genshin Impact",
-      "gameUrl": "https://www.freetogame.com/open/genshin-impact",
-      "id": 3
+      "cardId": 516,
+      "title": "PUBG: BATTLEGROUNDS",
+      "gameUrl": "https://www.freetogame.com/open/pubg",
+      "id": 4
     }
   ]
 }

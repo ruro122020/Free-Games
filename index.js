@@ -3,6 +3,7 @@ let gamesList;
 let gameTitles;
 let counter = 0;
 let gameCardObj;
+let favorites = []
 
 /***Helper functions */
 function clearDOM(parentElement) {
@@ -22,6 +23,7 @@ function searchResults(value) {
     })
     return newArr
 }
+
 function clearClass(element) {
     const parentElement = element.parentNode
     const children = parentElement.children
@@ -79,7 +81,17 @@ function handleFavoriteBtn() {
 
 }
 function handleDeleteBtn(id) {
-
+    const gameCard = document.querySelectorAll('.favorite-card')
+    const game = favorites.find(game => game.id === id)
+    Array.from(gameCard).forEach(element => {
+        if(element.children[0].textContent === game.title){
+            element.remove()
+            //remove game object from favorites array
+            favorites = favorites.filter(game => game.id !== id)
+        }
+    })
+    //delete from server
+    deleteFavoriteGame(id)
 }
 function handleNextGames() {
     const gameListContainer = document.getElementById('game-list')
@@ -95,6 +107,7 @@ function handleNextGames() {
     handleTitleEvent(gameListContainer.firstElementChild)
 }
 function handlePreviousGames() {
+    const gameListContainer = document.getElementById('game-list')
     if (counter === 10) {
         alert(`You're at the start of the game list`)
         return
@@ -103,6 +116,8 @@ function handlePreviousGames() {
     clearDOM(document.getElementById('game-list'))
     previousGames.forEach(game => renderGameTitles(game))
     counter -= 10
+    //on page load render the information of the first game on the list
+    handleTitleEvent(gameListContainer.firstElementChild)
 }
 function handlePlatformGames(e) {
     getGamesByPlatform(e.target.value.toLowerCase())
@@ -117,6 +132,7 @@ function handleSearch(e) {
         handleNextGames()
     }
 }
+
 
 /***Render to DOM */
 function renderGameTitles(title) {
@@ -168,7 +184,7 @@ function renderGameInfo({ id, title, release_date, platform, genre, thumbnail, g
 }
 function renderFavoriteGame({ id, title, gameUrl }) {
     const favoritesContainer = document.getElementById('favorites-list')
-    const gameTitle = document.createElement('h3')
+    const gameTitle = document.createElement('p')
     const link = document.createElement('a')
     const div = document.createElement('div')
     const deleteBtn = document.createElement('button')
@@ -183,9 +199,11 @@ function renderFavoriteGame({ id, title, gameUrl }) {
     deleteBtnEvent(deleteBtn, id)
     addNavButtons()
 }
-function renderFavoriteGames(favoriteGames) {
-    favoriteGames.forEach((game) => renderFavoriteGame(game))
+function renderFavoriteGames() {
+    favorites.forEach((game) => renderFavoriteGame(game))
 }
+
+
 /***Fetch Requests */
 let options = {
     method: 'GET',
@@ -212,6 +230,15 @@ function getGamesByPlatform(platform) {
         })
         .catch(error => console.log('error', error))
 }
+function getFavoritGames() {
+    fetch('http://localhost:3000/favorite')
+        .then(res => res.json())
+        .then(games => {
+            favorites = games
+            renderFavoriteGames()
+        })
+        .catch(error => console.log('error', error))
+}
 function postFavorites(gameObj) {
     fetch('http://localhost:3000/favorite', {
         method: 'POST',
@@ -222,13 +249,11 @@ function postFavorites(gameObj) {
         body: JSON.stringify(gameObj)
     })
         .then(res => res.json())
-        .then(game => renderFavoriteGame(game))
-        .catch(error => console.log('error', error))
-}
-function getFavoritGames() {
-    fetch('http://localhost:3000/favorite')
-        .then(res => res.json())
-        .then(games => renderFavoriteGames(games))
+        .then(game => {
+            favorites.push(game)
+            console.log('favorites in postfavorites', favorites)
+            renderFavoriteGame(game)
+        })
         .catch(error => console.log('error', error))
 }
 function deleteFavoriteGame(id){
