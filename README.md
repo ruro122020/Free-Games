@@ -9,3 +9,5 @@ Feature 1: You can filter through a list of games by browser or PC or both.
 Feature 2: You can search for a game. 
 
 Feature 3: You can click on any game title and some basic information will be provided about the game and a link to where you can play it. 
+
+Feature 4: You can add games to favorites to make it easier to locate your favorite games!
