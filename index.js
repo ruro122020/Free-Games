@@ -29,17 +29,7 @@ function clearClass(element) {
     const children = parentElement.children
     Array.from(children).forEach(element => element.className = '')
 }
-function addOrRemoveNavButtons() {
-    const back = document.getElementById('fav-back')
-    const forward = document.getElementById('fav-forward')
-    if (favorites.length) {
-        back.classList.remove('hide')
-        forward.classList.remove('hide')
-    }else{
-        back.className = 'hide'
-        forward.className = 'hide'
-    }
-}
+
 function checkGameExist(gameCardObj){
     const favoriteList = document.querySelectorAll(".favorite-card")
     const titleArr = Array.from(favoriteList).map(element => element.children[0].textContent)
@@ -68,6 +58,7 @@ document.getElementById('back').addEventListener('click', handlePreviousGames)
 document.getElementById('game-filter').addEventListener('change', handlePlatformGames)
 document.getElementById('search').addEventListener('input', handleSearch)
 
+
 /***Handle Events Functions */
 function handleTitleEvent(titleElement) {
     const gameObj = gamesList.find(game => game.title === titleElement.textContent)
@@ -92,9 +83,6 @@ function handleDeleteBtn(id) {
             favorites = favorites.filter(game => game.id !== id)
         }
     })
-    if(!favorites.length){
-        addOrRemoveNavButtons()
-    }
     //delete from server
     deleteFavoriteGame(id)
 }
@@ -118,7 +106,7 @@ function handlePreviousGames() {
         return
     }
     const previousGames = gameTitles.slice(counter - 20, counter - 10)
-    clearDOM(document.getElementById('game-list'))
+    clearDOM(gameListContainer)
     previousGames.forEach(game => renderGameTitles(game))
     counter -= 10
     //on page load render the information of the first game on the list
@@ -202,10 +190,10 @@ function renderFavoriteGame({ id, title, gameUrl }) {
     div.append(gameTitle, link, deleteBtn)
     favoritesContainer.append(div)
     deleteBtnEvent(deleteBtn, id)
-    addOrRemoveNavButtons()
 }
-function renderFavoriteGames() {
-    favorites.forEach((game) => renderFavoriteGame(game))
+
+function renderFavoriteGames(){
+    favorites.forEach(game => renderFavoriteGame(game))
 }
 
 
@@ -231,7 +219,6 @@ function getGamesByPlatform(platform) {
             gameTitles = titlesArr(games)
             counter = 0
             handleNextGames(games)
-            console.log(games)
         })
         .catch(error => console.log('error', error))
 }
