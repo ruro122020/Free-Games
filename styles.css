@@ -1,6 +1,8 @@
 body{
     display: flex;
     flex-direction: column;
+    background-color: lightseagreen;
+   font-family:  Apple Chancery, cursive;
 }
 #bar-container{
     padding-left: 10px;
