@@ -50,4 +50,7 @@ Now cd into the repo folder like so:
  ```
 Then open the index.html file in your browser and you should see a list of free games with some basic information and a link to start playing the game. Happy gaming!
 
+## Contribution
 
+If you like to contribute please don't hesitate to make a pull request with your cool ideas!
+If you find any bugs create an issue and I'll be more than happy to look into. Thank You!
