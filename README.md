@@ -53,4 +53,5 @@ Then open the index.html file in your browser and you should see a list of free 
 ## Contribution
 
 If you like to contribute please don't hesitate to make a pull request with your cool ideas!
+
 If you find any bugs create an issue and I'll be more than happy to look into. Thank You!
