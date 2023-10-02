@@ -34,6 +34,7 @@ Run the following code in your terminal:
 git clone [paste the url from the forked repo]
 ```
 Here is where you can find the url to your forked repo:
+
 ![alt text](./images/clone%20url.gif)
 
 Make sure you are using the url from the forked repo. In the url that you copied, it should have your github name in it. 
