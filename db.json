@@ -1,28 +1,3 @@
 {
-  "favorite": [
-    {
-      "cardId": 540,
-      "title": "Overwatch 2",
-      "gameUrl": "https://www.freetogame.com/open/overwatch-2",
-      "id": 1
-    },
-    {
-      "cardId": 525,
-      "title": "MultiVersus",
-      "gameUrl": "https://www.freetogame.com/open/multiversus",
-      "id": 14
-    },
-    {
-      "cardId": 540,
-      "title": "Overwatch 2",
-      "gameUrl": "https://www.freetogame.com/open/overwatch-2",
-      "id": 15
-    },
-    {
-      "cardId": 516,
-      "title": "PUBG: BATTLEGROUNDS",
-      "gameUrl": "https://www.freetogame.com/open/pubg",
-      "id": 16
-    }
-  ]
+  "favorite": []
 }
