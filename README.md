@@ -19,7 +19,7 @@ To install json-server, open your terminal and run:
 ```
 npm install -g json-server
 ```
-If you're having trouble installing json-server here is the [link](https://www.npmjs.com/package/json-server) to their documentation. 
+If you're having trouble installing json-server npm package, here is the [link](https://www.npmjs.com/package/json-server) to their documentation. 
 
 You must have node installed to run npm. Here is the [link](https://nodejs.org/en/download) to install it, if you haven't already. 
 
