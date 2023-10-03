@@ -18,10 +18,12 @@ function titlesArr(games) {
 }
 function searchResults(value) {
     const newArr = gameTitles.filter(title => {
-        const newTitle = title.toLowerCase()
-        return newTitle.includes(value.toLowerCase())
+        const lowerCastTitle = title.toLowerCase()
+        if(lowerCastTitle.includes(value.toLowerCase())){
+            return title
+        }
     })
-    return newArr
+    return newArr.length ? newArr : gameTitles
 }
 
 function clearClass(element) {
@@ -88,14 +90,15 @@ function handleDeleteBtn(id) {
 }
 function handleNextGames() {
     const gameListContainer = document.getElementById('game-list')
-    const nextGames = gameTitles.slice(counter, counter + 10)
-    if (!nextGames.length) {
-        alert(`You're at the end of the game list`)
-        return
-    }
-    clearDOM(gameListContainer)
-    nextGames.forEach(title => renderGameTitles(title))
-    counter += 10
+        const nextGames = gameTitles.slice(counter, counter + 10)
+        if (!nextGames.length) {
+            alert(`You're at the end of the game list`)
+            return
+        }
+        clearDOM(gameListContainer)
+        nextGames.forEach(title => renderGameTitles(title))
+        counter += 10
+   
     //on page load render the information of the first game on the list
     handleTitleEvent(gameListContainer.firstElementChild)
 }
@@ -116,12 +119,14 @@ function handlePlatformGames(e) {
     getGamesByPlatform(e.target.value.toLowerCase())
 }
 function handleSearch(e) {
-    counter = 0
     if (e.target.value === '') {
+        searchTitleArr = []
         gameTitles = titlesArr(gamesList)
+        counter = 0
         handleNextGames()
     } else {
         gameTitles = searchResults(e.target.value)
+        counter = 0
         handleNextGames()
     }
 }
