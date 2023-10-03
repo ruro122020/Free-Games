@@ -8,13 +8,19 @@ The application has a few features.
 
 Feature 1: You can filter through a list of games by browser, PC, or both.
 
+![alt text](./images/filter.gif)
+
 Feature 2: You can search for a game. 
 
 ![alt text](./images/search.gif)
 
 Feature 3: You can click on any game title and some basic information will be provided about the game and a link to where you can play it. 
 
+![alt text](./images/gameInfo.gif)
+
 Feature 4: You can add games to your favorites to make it easier to locate your favorite games next time!
+
+![alt text](./images/favorites.gif)
 
 ## Getting started 
 To get started, you will need the json-server npm package installed if you plan on using the 4th feature. If you don't intend to use it, you can skip this part. 
