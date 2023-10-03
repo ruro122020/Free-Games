@@ -10,6 +10,8 @@ Feature 1: You can filter through a list of games by browser, PC, or both.
 
 Feature 2: You can search for a game. 
 
+![alt text](./images/search%20feature.mp4)
+
 Feature 3: You can click on any game title and some basic information will be provided about the game and a link to where you can play it. 
 
 Feature 4: You can add games to your favorites to make it easier to locate your favorite games next time!
