@@ -19,9 +19,8 @@ function titlesArr(games) {
 function searchResults(value) {
     const newArr = gameTitles.filter(title => {
         const lowerCastTitle = title.toLowerCase()
-        if(lowerCastTitle.includes(value.toLowerCase())){
-            return title
-        }
+       return lowerCastTitle.includes(value.toLowerCase())
+        
     })
     return newArr.length ? newArr : gameTitles
 }
@@ -32,7 +31,7 @@ function clearClass(element) {
     Array.from(children).forEach(element => element.className = '')
 }
 
-function checkGameExist(gameCardObj){
+function checkGameExist(){
     const favoriteList = document.querySelectorAll(".favorite-card")
     const titleArr = Array.from(favoriteList).map(element => element.children[0].textContent)
     const game = titleArr.find(game => gameCardObj.title === game)
@@ -67,7 +66,7 @@ function handleTitleEvent(titleElement) {
     renderGameInfo(gameObj)
 }
 function handleFavoriteBtn() {
-    const game = checkGameExist(gameCardObj)
+    const game = checkGameExist()
     if (game) {
         alert(`${game} is already in favorites`)
     } else {
@@ -119,14 +118,12 @@ function handlePlatformGames(e) {
     getGamesByPlatform(e.target.value.toLowerCase())
 }
 function handleSearch(e) {
+    counter = 0
     if (e.target.value === '') {
-        searchTitleArr = []
         gameTitles = titlesArr(gamesList)
-        counter = 0
         handleNextGames()
     } else {
         gameTitles = searchResults(e.target.value)
-        counter = 0
         handleNextGames()
     }
 }
